@@ -10,9 +10,40 @@
 
 ### Program:
 ### Create employee table
-
+```
+CREATE TABLE employee(empid NUMBER,
+ empname VARCHAR(10),
+dept VARCHAR(10),
+salary NUMBER);
+```
 ### PLSQL Cursor code
-
+```
+SET SERVEROUTPUT ON;
+DECLARE
+CURSOR employee_cursor IS
+SELECT * FROM employee;
+emp_id NUMBER;
+emp_name VARCHAR2(20);
+emp_dept VARCHAR2(20);
+emp_salary NUMBER;
+BEGIN
+OPEN employee_cursor;
+LOOP
+FETCH employee_cursor INTO emp_id, emp_name, emp_dept, emp_salary;
+EXIT WHEN employee_cursor%NOTFOUND;
+ 
+DBMS_OUTPUT.PUT_LINE('Employee ID: ' || emp_id);
+DBMS_OUTPUT.PUT_LINE('Employee Name: ' || emp_name);
+DBMS_OUTPUT.PUT_LINE('Department: ' || emp_dept);
+DBMS_OUTPUT.PUT_LINE('Salary: ' || emp_salary);
+DBMS_OUTPUT.PUT_LINE('--------------------------');
+END LOOP;
+CLOSE employee_cursor;
+END;
+/
+```
 ### Output:
+![Screenshot 2023-10-04 115132](https://github.com/Priyadharshini-Er/Ex-no-6-Creating-Cursors-using-PL-SQL/assets/119558093/c42ed55c-771c-4572-ac9f-9016743573ac)
 
 ### Result:
+A cursor has been created successfully using PL/SQL.
